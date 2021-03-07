@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Frank-5850/Project-3#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "mongoose": "^5.11.19"
+    "mongoose": "^5.11.19",
+    "path": "^0.12.7"
   }
 }
