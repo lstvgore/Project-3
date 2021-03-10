@@ -11,7 +11,7 @@ app.use(express.json());
 
 require('./routes/api-routes')(app);
 mongoose.connect(
-  process.env.MONGO_URI || "mongo://localhost/jwt-auth",
+  process.env.MONGO_URI || "mongodb://localhost/jwt-auth",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

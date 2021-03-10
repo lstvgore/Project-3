@@ -118,7 +118,7 @@ app.post("/account/signin",(req,res,next)=>{
             })
         }
     const userSession=new UserSession();
-        userSession.userId=user_id;
+        userSession.userId=user._id;
         userSession.save((err,doc)=>{
             if (err){
                 return res.send({
