@@ -133,20 +133,21 @@ app.post("/account/signin",(req,res,next)=>{
             })
         })
     })
-    app.get('/account/verify',(req,res,next)=>{
+})
+app.get('/account/verify',(req,res,next)=>{
         const { query } =req;
         const { token} =query;
         UserSession.find({
             _id:token,
             isDeleted:false
-        },(err,session)=>{
+        },(err,sessions)=>{
             if(err){
                 return res.send({
                     success:false,
                     message:'error'
                 })
             }
-            if(session.length!=1){
+            if(sessions.length!=1){
                 return res.send({
                     success:false,
                     message:"err"
@@ -161,7 +162,29 @@ app.post("/account/signin",(req,res,next)=>{
     })
 
  app.get('/account/logout',(req,res,next)=>{
-     
- })   
+    const { query } =req;
+    const { token} =query;
+    UserSession.findOneAndUpdate({
+        _id:token,
+        isDeleted:false
+    },{
+
+    },null,(err,sessions)=>{
+        {$set:{isDeleted:true}}
+        if(err){
+            return res.send({
+                success:false,
+                message:'error'
+            })
+        }
+        
+            return res.send({
+                success:true,
+                message:'done'
+            })
+        
+    })
 })
+    
+
 };
