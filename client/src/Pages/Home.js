@@ -29,6 +29,7 @@ class Home extends Component {
     this.onTextboxChangeSignUpLastName=this.onTextboxChangeSignUpLastName.bind(this)
     this.onSignIn=this.onSignIn.bind(this)
     this.onSignUp=this.onSignUp.bind(this)
+    this.logout=this.logout.bind(this)
   }
   componentDidMount(){
     const obj=getFromStorage('the_main_app');
@@ -167,6 +168,35 @@ onSignIn(){
   }
 })
 }
+logout(){
+  this.setState({
+    isLoading:true,
+  })
+  const obj=getFromStorage('the_main_app');
+  if(obj && obj.token){
+    const {token}=obj;
+    fetch('/account/logout?token='+token)
+    .then(res=>res.json())
+    .then(json=>{
+      if(json.success){
+        this.setState({
+          token:'',
+          isLoading:false
+        })
+      }else {
+        this.setState({
+          isLoading:false,
+        })
+      }
+    })
+  
+    }else{
+      this.setState({
+        isLoading:false,
+      })
+    }
+  }
+
   render(){
     const{
       isLoading,
@@ -224,6 +254,7 @@ onSignIn(){
   return (
     <div>
       <h1>Account</h1>
+      <button onClick={this.logout}>Log Out</button>
     </div>
   )
 }
