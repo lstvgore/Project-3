@@ -99,14 +99,17 @@ export default class Register extends Component {
       .then((res) => res.json())
       .then((json) => {
         if (json.success) {
-          this.setState({
-            signUpError: json.message,
-            isLoading: false,
-            signUpError: "",
-            signUpPassword: "",
-            signUpFirstName: "",
-            signUpLastName: "",
-          });
+          this.setState(
+            {
+              signUpError: json.message,
+              isLoading: false,
+              signUpError: "",
+              signUpPassword: "",
+              signUpFirstName: "",
+              signUpLastName: "",
+            },
+            console.log("hello")
+          );
         } else {
           this.setState({
             signUpError: json.message,
@@ -174,7 +177,7 @@ export default class Register extends Component {
     }
     return (
       <div>
-        <h1>Account</h1>
+        <h1>Registered</h1>
       </div>
     );
   }

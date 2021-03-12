@@ -80,12 +80,13 @@ export default class Login extends Component {
             signInError: json.message,
             isLoading: false,
             signInPassword: "",
-            signUpEmail: "",
+            signInEmail: "",
             token: json.token,
           });
         } else {
+          console.log("hello");
           this.setState({
-            signUpError: json.message,
+            signInError: json.message,
             isLoading: false,
           });
         }
