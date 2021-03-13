@@ -158,7 +158,7 @@ module.exports = (app) => {
     console.log("backendlogout");
     const { query } = req;
     const { token } = query;
-    UserSessions.findOneAndUpdate(
+    userSession.findOneAndUpdate(
       {
         _id: token,
         isDeleted: false,

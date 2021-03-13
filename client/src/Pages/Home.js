@@ -1,15 +1,16 @@
 import React from "react";
-import LogoutButton from "../Components/LogoutButton";
 import Login from "./Login";
 import Register from "./Register";
 
 const Home = () => {
   return (
     <div>
+     
+     <Register/>
       <Login />
-      <Register />
-      <LogoutButton />
-      <h1>Please work</h1>
+      
+      
+      
     </div>
   );
 };
