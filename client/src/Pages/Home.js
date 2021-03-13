@@ -6,10 +6,6 @@ const Home = () => {
   return (
     <div>
      <NavBar />
-     <Register/>
-      <Login />
-      
-      
       
     </div>
   );
