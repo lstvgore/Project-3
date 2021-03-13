@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getFromStorage, setInStorage } from "../Utils/storage";
+import Register from "./Register";
 
 export default class Login extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ export default class Login extends Component {
       this
     );
     this.onSignIn = this.onSignIn.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   componentDidMount() {
@@ -92,6 +94,39 @@ export default class Login extends Component {
         }
       });
   }
+  logout() {
+    this.setState({
+      isLoading: true,
+    });
+    const obj = getFromStorage("the_main_app");
+    if (obj && obj.token) {
+      const { token } = obj;
+      const query = "/account/logout?token=" + token;
+      console.log(query);
+      fetch(query)
+        .then((res) => res.json())
+        .then((json) => {
+          if (json.success) {
+            this.setState({
+              token: "",
+              isLoading: false,
+            });
+          } else {
+            this.setState(
+              {
+                isLoading: false,
+              },
+              console.log("first else")
+            );
+          }
+        });
+    } else {
+      console.log("second else");
+      this.setState({
+        isLoading: false,
+      });
+    }
+  }
 
   render() {
     const {
@@ -128,7 +163,9 @@ export default class Login extends Component {
               onChange={this.onTextboxChangeSignInPassword}
             />
             <br />
+            
             <button onClick={this.onSignIn}>Sign In</button>
+            
           </div>
         </div>
       );
@@ -136,7 +173,9 @@ export default class Login extends Component {
 
     return (
       <div>
-        <h1>Account</h1>
+        <h1>You are Logged In</h1>
+        <button onClick={this.logout}>Log Out</button>
+        
       </div>
     );
   }
