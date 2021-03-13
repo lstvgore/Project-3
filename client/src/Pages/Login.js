@@ -108,6 +108,7 @@ export default class Login extends Component {
         .then((res) => res.json())
         .then((json) => {
           if (json.success) {
+            localStorage.removeItem("the_main_app")
             this.setState({
               token: "",
               isLoading: false,
