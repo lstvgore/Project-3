@@ -5,11 +5,7 @@ import Register from "./Register";
 const Home = () => {
   return (
     <div>
-     
-     <Register/>
-      <Login />
-      
-      
+     <NavBar />
       
     </div>
   );
