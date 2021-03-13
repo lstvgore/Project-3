@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getFromStorage, setInStorage } from "../Utils/storage";
-import Register from "./Register";
+
 
 
 export default class Login extends Component {
