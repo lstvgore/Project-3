@@ -24,16 +24,16 @@ module.exports = (app) => {
     if (!email) {
       return res.send({
         success: false,
-        message: "email name cannot be blank",
+        message: "Email name cannot be blank",
       });
     }
     if (!password) {
       return res.send({
         success: false,
-        message: "password cannot be blank",
+        message: "Password cannot be blank",
       });
     }
-    console.log("hello");
+    
     email = email.toLowerCase();
 
     User.find(
@@ -42,8 +42,8 @@ module.exports = (app) => {
       },
       (err, previousUsers) => {
         if (err) {
-          return res.send("Error!!!!");
-        } else if (previousUsers.length > 0) {
+          return res.send("Email already in Use");
+        } else if (previousUsers.length < 0) {
           return res.send("Account already exists");
         }
         const newUser = new User();
@@ -54,11 +54,11 @@ module.exports = (app) => {
         newUser.save((err, user) => {
           if (err) {
             return res.send({
-              message: "error",
+              message: "Email already in Use",
             });
           }
           return res.send({
-            message: "SignedUp",
+            message: "Great You have Created an account with us!",
           });
         });
       }
@@ -71,13 +71,13 @@ module.exports = (app) => {
     if (!email) {
       return res.send({
         success: false,
-        message: "email name cannot be blank",
+        message: "Email name cannot be blank",
       });
     }
     if (!password) {
       return res.send({
         success: false,
-        message: "password cannot be blank",
+        message: "Password cannot be blank",
       });
     }
     email = email.toLowerCase();
@@ -85,6 +85,7 @@ module.exports = (app) => {
     User.find(
       {
         email: email,
+        
       },
       (err, users) => {
         if (err) {
@@ -95,14 +96,14 @@ module.exports = (app) => {
         }
         if (users.length != 1) {
           return res.send({
-            success: false,
-            message: "err:Invalid",
+            success: true,
+            message: "Email doesn't match",
           });
         }
         const user = users[0];
         if (!user.validPassword(password)) {
           return res.send({
-            success: false,
+            success: true,
             message: "error:email",
           });
         }
@@ -112,12 +113,14 @@ module.exports = (app) => {
           if (err) {
             return res.send({
               success: false,
-              message: "err!password is invalid",
+              message: "Password is invalid",
             });
           }
-          return res.send({
+          return res.send(
+            {
+            
             success: true,
-            message: "valid sign in",
+            message: "You have succefully Logged Out",
             token: doc._id,
           });
         });
@@ -155,7 +158,7 @@ module.exports = (app) => {
   });
 
   app.get("/account/logout", (req, res, next) => {
-    console.log("backendlogout");
+    console.log("User Logout");
     const { query } = req;
     const { token } = query;
     userSession.findOneAndUpdate(
