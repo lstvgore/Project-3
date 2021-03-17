@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getFromStorage, setInStorage } from "../Utils/storage";
+import '../App.css';
 
 
 
@@ -148,7 +149,7 @@ export default class Login extends Component {
     }
     if (!token) {
       return (
-        <div>
+        <div className="SignIn-Container">
           <div>
             {signInError ? <h1>{signInError}</h1> : null}
             <h1>Sign In</h1>

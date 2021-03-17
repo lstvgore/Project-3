@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getFromStorage } from "../Utils/storage";
+import '../App.css'
 
 export default class Register extends Component {
   constructor(props) {
@@ -138,7 +139,7 @@ export default class Register extends Component {
     }
     if (!token) {
       return (
-        <div>
+        <div className="SignUp-container">
           <div>
             {signUpError ? <h1>{signUpError}</h1> : null}
             <h1>Sign Up</h1>

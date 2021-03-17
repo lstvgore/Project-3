@@ -1,12 +1,13 @@
 import React from "react";
+import '../App.css';
+import HeadSection from '../Components/HeadSection';
 
 
 const Home = () => {
   return (
-    <div>
-     <p>Hooomee</p>
-      
-    </div>
+   <>
+   <HeadSection />
+   </>
   );
 };
 
