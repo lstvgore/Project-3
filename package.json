@@ -21,6 +21,7 @@
     "bcrypt": "^5.0.1",
     "express": "^4.17.1",
     "mongoose": "^5.11.19",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "react-google-login": "^5.2.2"
   }
 }
